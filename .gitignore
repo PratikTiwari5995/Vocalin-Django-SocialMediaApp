@@ -1,0 +1,17 @@
+# Virtual environment
+.vocalin_venv/
+
+# Python
+__pycache__/
+*.py[cod]
+
+# Django stuff
+db.sqlite3
+/media/
+/static/
+
+# Environment variables
+.env
+
+# VS Code junk
+.vscode/

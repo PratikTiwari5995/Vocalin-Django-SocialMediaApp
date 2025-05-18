@@ -1,0 +1,7 @@
+{% extends "layout/v.html" %}
+
+{% block content %}
+    {% for post in posts %}
+        {% include "v_post/post.html" %}
+    {% endfor %}
+{% endblock %}
