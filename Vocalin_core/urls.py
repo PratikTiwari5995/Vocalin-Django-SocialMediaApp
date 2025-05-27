@@ -32,6 +32,7 @@ urlpatterns = [
     path('post/<str:pk>/', post_page_view, name='post_page'),
     path('profile/', profile_view, name='profile_page'),
     path('profile/edit/', profile_edit_view, name='edit_profile'),
+    path('profile/delete', profile_delete_view, name='profile_delete')
     
     
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -1,41 +1,51 @@
 {% load static %}
 <article class="card">
     <div class="flex items-center justify-between px-4 h-14">
-        <h3 class="text-start leading-5 mr-1">"{{post.title}}"</h3>
-        <div class="text-sm text-gray-400 truncate">
-        </div>
+        <h3 class="text-start leading-5 mr-1">"{{ post.title }}"</h3>
     </div>
 
     <figure>
-        <a href="{% url "post_page" post.id %}">
-            <img class="w-full" src="{{post.photo.url}}" alt="Jedi Cat">
+        <a href="{% url 'post_page' post.id %}">
+            <img class="w-full" src="{{ post.photo.url }}" alt="{{ post.title }}">
         </a>
     </figure>
 
     <div class="p-4 pb-2">
-        {% if post.author %}
-            <a class="flex items-center gap-1 mb-4" href="">
-                <img class="w-8 h-8 object-cover rounded-full" src="{{post.author.profile.avatar_url}}" alt="User Avatar">
-                <span class="font-bold hover:underline">{{post.author.profile.name}}</span>
-                <span class="text-sm text-gray-400">@{{post.author.username}}</span>
+        {% if post.author and post.author.profile %}
+            <a class="flex items-center gap-1 mb-4" href="#">
+                <img class="w-8 h-8 object-cover rounded-full"
+                     src="{{ post.author.profile.avatar_url }}"
+                     alt="{{ post.author.username }} Avatar">
+                <span class="font-bold hover:underline">
+                    {{ post.author.profile.name }}
+                </span>
+                <span class="text-sm text-gray-400">
+                    @{{ post.author.username }}
+                </span>
             </a>
         {% else %}
-            <div class='flex items-center gap-1 mb-4'>
-                <img class="w-8 h-8 object-cover rounded-full" src="{% static "images/avatar_default.svg" %}" alt="User Avatar">
+            <div class="flex items-center gap-1 mb-4">
+                <img class="w-8 h-8 object-cover rounded-full"
+                     src="{% static 'images/avatar_default.svg' %}"
+                     alt="Default Avatar">
                 <span class="font-bold hover:underline">Unknown Author</span>
             </div>
         {% endif %}
-        <p class="text-5xl mb-10 px-4 font1">"{{post.body}}"</p>
+
+        <p class="text-5xl mb-10 px-4 font1">"{{ post.body }}"</p>
+
         <div class="flex items-center gap-2 text-sm mb-5 flex-wrap">
             {% for tag in post.tags.all %}
-                <a href="{% url "category_page" tag %}" class="bg-gray-200 rounded-full px-3 py-1 hover:bg-gray-800 hover:text-white">{{tag}}</a>
+                <a href="{% url 'category_page' tag %}"
+                   class="bg-gray-200 rounded-full px-3 py-1 hover:bg-gray-800 hover:text-white">
+                    {{ tag.name }}
+                </a>
             {% endfor %}
         </div>
 
         <div class="flex items-center justify-between text-sm px-2">
-            <a class="font-bold hover:underline" href="">
-                Comments
-                <span class="font-light text-gray-500 ml-1">3</span>
+            <a class="font-bold hover:underline" href="#">
+                Comments <span class="font-light text-gray-500 ml-1">3</span>
             </a>
 
             <div class="flex items-center gap-4 [&>a:hover]:underline">
@@ -43,9 +53,11 @@
                     <img class="w-5 -mt-1" src="https://img.icons8.com/small/24/000000/fire-heart.png" alt="Like">
                     1
                 </div>
-                <a href="">Like</a>
-                <a href="{% url "edit_post" post.id %}">Edit</a>
-                <a href="{% url "delete_post" post.id %}">Delete</a>
+                <a href="#">Like</a>
+                {% if user.is_authenticated and user == post.author %}
+                    <a href="{% url 'edit_post' post.id %}">Edit</a>
+                    <a href="{% url 'delete_post' post.id %}">Delete</a>
+                {% endif %}
             </div>
         </div>
     </div>
