@@ -32,7 +32,11 @@ urlpatterns = [
     path('post/<str:pk>/', post_page_view, name='post_page'),
     path('profile/', profile_view, name='profile_page'),
     path('profile/edit/', profile_edit_view, name='edit_profile'),
-    path('profile/delete', profile_delete_view, name='profile_delete')
+    path('profile/delete', profile_delete_view, name='profile_delete'),
+    path('commentsend/<pk>', comment_send, name='comment_send'),
+    path('comment/delete/<pk>', comment_delete_view, name='comment_delete'),
+    path('replysend/<pk>', reply_send, name='reply_send'),
+    path('reply/delete/<pk>', reply_delete_view, name='reply_delete')
     
     
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

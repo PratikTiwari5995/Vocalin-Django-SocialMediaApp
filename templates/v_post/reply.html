@@ -1,0 +1,29 @@
+
+  <reply class="flex items-end justify-between py-4 border-t">
+                            <div class="flex">
+                                <a href="#">
+                                    <img class="w-8 h-8 object-cover rounded-full mr-2" src="{{reply.author.profile.avatar_url}}">
+                                </a>
+                                <div class="w-fit">
+                                    {% if reply.author %}
+                                        <a class="block" href="">
+                                            <span class="font-bold hover:underline">{{reply.author.profile.name}}</span>
+                                            <span class="text-sm text-gray-400">@{{reply.author.username}}</span>
+                                        </a>
+                                    {% else %}
+                                        <span class='text-gray-500'>No Author</span>
+                                    {% endif %}
+                                    <div class="mr-3">{{reply.body}}</div>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-4 [&>a:hover]:underline">
+                                <div class="flex items-center gap-1">
+                                    <img class="w-5 -mt-1" src="https://img.icons8.com/small/24/000000/fire-heart.png">
+                                    1
+                                </div>
+                                <a href="">Like</a>
+                                {% if user.is_authenticated and reply.author == user %}
+                                <a href="{% url "reply_delete" reply.id %}">Delete</a>
+                                {% endif %}
+                            </div>
+                        </reply>
