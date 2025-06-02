@@ -30,6 +30,7 @@ urlpatterns = [
     path('post/delete/<str:pk>/', post_delete_view, name='delete_post'),
     path('post/edit/<str:pk>/', post_edit_view, name='edit_post'),
     path('post/<str:pk>/', post_page_view, name='post_page'),
+    path('post/<str:pk>/like', post_like_view, name='post_like'),
     path('profile/', profile_view, name='profile_page'),
     path('profile/edit/', profile_edit_view, name='edit_profile'),
     path('profile/delete', profile_delete_view, name='profile_delete'),
