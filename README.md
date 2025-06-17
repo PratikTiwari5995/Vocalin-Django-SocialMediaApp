@@ -33,14 +33,21 @@ Vocalin is a feature-rich full-stack social media web application built using Dj
 ```
 Vocalin-Django-SocialMediaApp/
 │
-├── accounts/             # User auth & profile handling
-├── posts/                # Core posting logic
-├── templates/            # HTML templates
-├── static/               # CSS, JS, media files
-├── db.sqlite3            # Default SQLite database
-├── manage.py             # Django project runner
-├── requirements.txt      # Python dependencies
-└── README.md             # Documentation (this file)
+├── .vocalin_venv/         # Virtual environment (not pushed to GitHub)
+├── media/                 # Uploaded media files
+├── static/                # Static files (CSS, JS, images)
+├── templates/             # Global HTML templates
+│
+├── v_post/                # App for handling posts
+├── v_users/               # App for user authentication & profiles
+├── Vocalin_core/          # Core Django project settings
+│
+├── .env                   # Environment variables (excluded in .gitignore)
+├── .gitignore             # Git ignored files
+├── db.sqlite3             # SQLite3 database
+├── manage.py              # Django project runner
+├── README.md              # Project documentation
+└── requirements.txt       # Python dependencies
 ```
 
 ---
